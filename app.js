@@ -4,9 +4,11 @@ const { convertToCSV } = require('./converter');
 const fs = require("fs")
 const app = express();
 const port = 3000;
-
+const path = require("path")
 // Set up multer for handling file uploads
 const upload = multer({ dest: 'uploads/' });
+
+app.use(express.static(path.join(__dirname, 'public')));
 
 // Handle file upload and conversion
 app.post('/upload', upload.single('asciiFile'), async (req, res) => {

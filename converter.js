@@ -30,19 +30,16 @@ const convertToCSV = (asciiFilePath, csvFilePath) => {
     rl.on('line', (line) => {
       // Split the line into values based on the delimiter (e.g., comma, space)
       // const values = line.split(','); // Adjust delimiter based on the ASCII file structure
-      console.log(line)
       // If headers are not yet processed, set them
 
       // Construct an object with keys as headers and values as line values
       let index = records.length
       const record = { "line": line };
-      console.log(record)
       records.push(record);
     });
 
     // After reading all lines, write records to the CSV file
     rl.on('close', () => {
-      console.log(records)
       csvWriter.writeRecords(records)
         .then(() => {
           res(true)
